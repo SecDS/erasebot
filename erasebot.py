@@ -23,37 +23,31 @@ async def on_message(message):
 @bot.command(pass_context = True)
 async def connect(ctx, server: str):
     server = server.lower()
-    userid = ctx.message.author.id
     if server == "ttt":
-        await bot.say("<@%s> | Connect to our TTT server with: steam://connect/ttt.erasegaming.com:27065" % (userid))
+        await bot.say("<@%s> | Connect to our TTT server with: steam://connect/ttt.erasegaming.com:27065" % (ctx.message.author.id))
     elif server == "discord":
-        await bot.say("<@%s> | Connect to our Discord server with: https://discord.gg/JpgEJPV" % (userid)) 
+        await bot.say("<@%s> | Connect to our Discord server with: https://discord.gg/JpgEJPV" % (ctx.message.author.id)) 
 
 @bot.command(pass_context = True)
 async def dice(ctx):
-    result = random.randint(1, 6)
-    result = str(result)
-    userid = ctx.message.author.id
-    await bot.say("<@%s> | Dice Roll: " % (userid) + result) 
+    result = str(random.randint(1, 6))
+    await bot.say("<@%s> | Dice Roll: " % (ctx.message.author.id) + result) 
         
 @bot.command(pass_context = True)
 async def flip(ctx):
     result = random.randint(1, 2)
-    userid = ctx.message.author.id
     if result == 1:
-        await bot.say("<@%s> | Coinflip: heads" % (userid))
-    elif result == 2:
-        await bot.say("<@%s> | Coinflip: tails" % (userid))
+        await bot.say("<@%s> | Coinflip: heads" % (ctx.message.author.id))
+    else:
+        await bot.say("<@%s> | Coinflip: tails" % (ctx.message.author.id))
 
 @bot.command(pass_context = True)
 async def forum(ctx):
-    userid = ctx.message.author.id
-    await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (userid))
+    await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (ctx.message.author.id))
 
 @bot.command(pass_context = True)
 async def forums(ctx):
-    userid = ctx.message.author.id
-    await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (userid)) 
+    await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (ctx.message.author.id)) 
 
 @bot.command(pass_context = True)
 async def randomnum(ctx, rmin: int, rmax: int):
@@ -76,32 +70,23 @@ async def staff(ctx):
 
 @bot.command(pass_context = True)
 async def anime(ctx):
-    channelid = ctx.message.channel.id
-    messageid = ctx.message.id
-    await bot.http.delete_message(channelid, messageid)
+    await bot.http.delete_message(ctx.message.channel.id, ctx.message.id)
     with open('anime.png', 'rb') as image:
         await bot.send_file(discord.Object(id = channelid), image)
 
 @bot.command(pass_context = True)
 async def ooga(ctx):
-    channelid = ctx.message.channel.id
-    messageid = ctx.message.id
-    userid = ctx.message.author.id
-    await bot.http.delete_message(channelid, messageid)
-    await bot.say("<@%s> Ooga Booga" % (userid))
+    await bot.http.delete_message(ctx.message.channel.id, ctx.message.id)
+    await bot.say("<@%s> Ooga Booga" % (ctx.message.author.id))
     
 @bot.command(pass_context = True)
 async def piggie(ctx):
-    channelid = ctx.message.channel.id
-    messageid = ctx.message.id
-    await bot.http.delete_message(channelid, messageid)
+    await bot.http.delete_message(ctx.message.channel.id, ctx.message.id)
     await bot.say("Oink Oink <@%s>" % ("151802030984265729"))
         
 @bot.command(pass_context = True)
 async def yee(ctx):
-    channelid = ctx.message.channel.id
-    messageid = ctx.message.id
-    await bot.http.delete_message(channelid, messageid)
+    await bot.http.delete_message(ctx.message.channel.id, ctx.message.id)
     with open('yee.png', 'rb') as image:
         await bot.send_file(discord.Object(id = channelid), image)
     
