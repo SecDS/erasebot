@@ -62,13 +62,29 @@ async def randomnum(ctx, rmin: int, rmax: int):
 
 @bot.command(pass_context = True)
 async def staff(ctx):
-    role_table = []
-    for member in ctx.message.server.members:
-        for role in member.roles:
-            if role.name == "Owner" or "Co-Owner" or "Super Admin" or "Admin" or "Moderator" or "Operator":
-                role_table.append([role.name, member.name])
-    for element in role_table:
-        await bot.say(element[1] + " | " + element[2])
+    staff_roles = []
+    staff_members = []
+    for staff_member in ctx.message.server.members:
+        for staff_role in staff_member.roles:
+            if staff_role.name == "Owner" or "Co-Owner" or "Super Admin" or "Admin" or "Moderator" or "Operator":
+                staff_roles.append(staff_role.name)
+                staff_members.append(staff_member.name)
+    staff_counter = 0
+    for staff_role in staff_roles:
+        staff_name = staff_members[staff_counter]
+        if staff_role == "Owner":
+            await bot.say(staff_role + " | " + staff_name)
+        elif staff_role == "Co-Owner":
+            await bot.say(staff_role + " | " + staff_name)
+        elif staff_role == "Super Admin":
+            await bot.say(staff_role + " | " + staff_name)
+        elif staff_role == "Admin":
+            await bot.say(staff_role + " | " + staff_name)
+        elif staff_role == "Moderator":
+            await bot.say(staff_role + " | " + staff_name)
+        elif staff_role == "Operator":
+            await bot.say(staff_role + " | " + staff_name)
+        staff_counter += 1
 
 @bot.command(pass_context = True)
 async def anime(ctx):
