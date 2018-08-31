@@ -62,7 +62,7 @@ async def randomnum(ctx, rmin: int, rmax: int):
     rmax = str(rmax)
     result = str(result)
     userid = ctx.message.author.id
-    await bot.say("<@%s> | Random number between " % (random_userid) + random_min + " and " + random_max + ": " + random_result)
+    await bot.say("<@%s> | Random number between " % (userid) + rmin + " and " + rmax + ": " + result)
 
 @bot.command(pass_context = True)
 async def staff(ctx):
