@@ -66,28 +66,13 @@ async def randomnum(ctx, rmin: int, rmax: int):
 
 @bot.command(pass_context = True)
 async def staff(ctx):
-    members = []
-    roles = []
+    role_table = []
     for member in ctx.message.server.members:
         for role in member.roles:
             if role.name == "Owner" or "Co-Owner" or "Super Admin" or "Admin" or "Moderator" or "Operator":
-                roles.append(role.name)
-                members.append(member.name)
-    counter = 0
-    for role in roles:
-        if role == "Owner":
-            await bot.say(role + " | " + name)
-        elif role == "Co-Owner":
-            await bot.say(role + " | " + name)
-        elif role == "Super Admin":
-            await bot.say(role + " | " + name)
-        elif role == "Admin":
-            await bot.say(role + " | " + name)
-        elif role == "Moderator":
-            await bot.say(role + " | " + name)
-        elif role == "Operator":
-            await bot.say(role + " | " + name)
-        counter += 1
+                role_table.append([role.name, member.name])
+    for element in role_table:
+        await bot.say(element[1] + " | " + element[2])
 
 @bot.command(pass_context = True)
 async def anime(ctx):
