@@ -41,13 +41,15 @@ async def flip(ctx):
     else:
         await bot.say("<@%s> | Coinflip: tails" % (ctx.message.author.id))
 
-@bot.command(pass_context = True)
+@bot.command(alias = "forums", pass_context = True)
 async def forum(ctx):
     await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (ctx.message.author.id))
 
+'''
 @bot.command(pass_context = True)
 async def forums(ctx):
     await bot.say("<@%s> | Visit our forums at: https://www.erasegaming.com" % (ctx.message.author.id)) 
+'''
 
 @bot.command(pass_context = True)
 async def randomnum(ctx, rmin: int, rmax: int):
